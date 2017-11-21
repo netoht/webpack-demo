@@ -1,20 +1,20 @@
 // import
 const
-path = require('path'),
-webpack = require('webpack'),
-CleanWebpackPlugin = require('clean-webpack-plugin')
+  path = require('path'),
+  webpack = require('webpack'),
+  CleanWebpackPlugin = require('clean-webpack-plugin')
 CopyWebpackPlugin = require('copy-webpack-plugin'),
-ExtractTextPlugin = require('extract-text-webpack-plugin'),
-UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
 
-// config
-cleanDist = new CleanWebpackPlugin(['dist']),
-copyFiles = new CopyWebpackPlugin([
-  { from: './index.html' }
-]),
-extractLESS = new ExtractTextPlugin('assets/css/app.css'),
-extractFontAwesome = new ExtractTextPlugin('assets/css/font-awesome.css'),
-extractSASSBulma = new ExtractTextPlugin('assets/css/bulma.css')
+  // config
+  cleanDist = new CleanWebpackPlugin(['dist']),
+  copyFiles = new CopyWebpackPlugin([{
+    from: './index.html'
+  }]),
+  extractLESS = new ExtractTextPlugin('assets/css/app.css'),
+  extractFontAwesome = new ExtractTextPlugin('assets/css/font-awesome.css'),
+  extractSASSBulma = new ExtractTextPlugin('assets/css/bulma.css')
 
 // webpack
 module.exports = {
@@ -34,29 +34,25 @@ module.exports = {
       // images
       {
         test: /\.(png|svg|jpe?g|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/img/',
-              publicPath: '/'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'assets/img/',
+            publicPath: '/'
           }
-        ],
+        }],
       },
 
       // fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/fonts/',
-              publicPath: '/'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'assets/fonts/',
+            publicPath: '/'
           }
-        ],
+        }],
       },
 
       // css,less
@@ -64,13 +60,11 @@ module.exports = {
         test: /\.(css|less)$/,
         include: /src/,
         use: extractLESS.extract({
-          use: [
-            {
-              loader: 'css-loader'
-            }, {
-              loader: 'less-loader'
-            }
-          ],
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'less-loader'
+          }],
           fallback: 'style-loader'
         })
       },
@@ -80,13 +74,11 @@ module.exports = {
         test: /\.s[ac]ss$/,
         include: /Bulma.sass/,
         use: extractSASSBulma.extract({
-          use: [
-            {
-              loader: 'css-loader'
-            }, {
-              loader: 'sass-loader'
-            }
-          ],
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
           fallback: 'style-loader'
         })
       },
@@ -96,15 +88,22 @@ module.exports = {
         test: /\.less$/,
         include: /font-awesome/,
         use: extractFontAwesome.extract({
-          use: [
-            {
-              loader: 'css-loader'
-            }, {
-              loader: 'less-loader'
-            }
-          ],
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'less-loader'
+          }],
           fallback: 'style-loader'
         })
+      },
+
+      // react
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'babel-loader'
+        }]
       }
     ],
   },

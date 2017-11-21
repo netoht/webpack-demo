@@ -1,3 +1,6 @@
+import React from 'react'
+import { render } from 'react-dom'
+
 import './style.css'
 import content from './content'
 import LogoWebpack from './logo-webpack.svg'
@@ -29,3 +32,8 @@ document.write(`
 <div class="is-divider" data-content="OR"></div>
 
 `)
+
+render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('root')
+);
