@@ -1,1 +1,3 @@
-module.exports = 'It works from content.js.';
+const text = 'It works from content.js.'
+
+export default text

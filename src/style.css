@@ -1,4 +1,8 @@
-body {
-  background: yellow;
-  font-family: Arial, Helvetica, sans-serif
+.logo {
+  width: 105px;
+  height: 30px;
+  background: transparent url(./logo-webpack.svg) no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+  border: 1px solid #000;
 }
