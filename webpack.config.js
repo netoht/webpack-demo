@@ -5,6 +5,7 @@ webpack = require('webpack'),
 CleanWebpackPlugin = require('clean-webpack-plugin')
 CopyWebpackPlugin = require('copy-webpack-plugin'),
 ExtractTextPlugin = require('extract-text-webpack-plugin'),
+UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
 
 // config
 cleanDist = new CleanWebpackPlugin(['dist']),
